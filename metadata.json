@@ -1,0 +1,6 @@
+{
+  "name": "Kavach - Cyber-Abuse Response & Reporting Companion",
+  "description": "Privacy-first cyber-abuse response and reporting companion for women in India. Features in-browser evidence hashing, first-hour safety playbooks, complaint drafting, and incident tracking.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

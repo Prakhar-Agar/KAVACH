@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      // Safeguard for browser extension interceptors attempting to set window.fetch
+      (function() {
+        try {
+          var _f = window.fetch;
+          Object.defineProperty(window, 'fetch', {
+            get: function() { return _f; },
+            set: function(v) { _f = v; },
+            configurable: true,
+            enumerable: true
+          });
+        } catch (_) {}
+      })();
+    </script>
+    <title>Kavach - Cyber-Abuse Response & Reporting Companion</title>
+    <meta name="description" content="Privacy-first cyber-abuse response and reporting companion for women in India. Features in-browser evidence hashing, first-hour safety playbooks, complaint drafting, and incident tracking." />
+    <meta property="og:title" content="Kavach - Cyber-Abuse Response & Reporting Companion" />
+    <meta property="og:description" content="Privacy-first cyber-abuse response and reporting companion for women in India. Features in-browser evidence hashing, first-hour safety playbooks, complaint drafting, and incident tracking." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
