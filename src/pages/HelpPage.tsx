@@ -86,6 +86,14 @@ export const HelpPage: React.FC<HelpPageProps> = ({ onNavigate }) => {
         <span>{t.backToHome}</span>
       </button>
 
+      {/* Site-wide General Legal Notice Banner */}
+      <div className="mb-6 p-4 rounded-xl bg-amber-950/40 border border-amber-800/60 text-xs sm:text-sm text-amber-200 flex items-start gap-3">
+        <AlertCircle className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" aria-hidden="true" />
+        <div className="leading-relaxed">
+          <strong className="text-amber-100 font-semibold">{t.trackUnverifiedLegalBadge}:</strong> {t.generalLegalNotice}
+        </div>
+      </div>
+
       {/* Hero Header */}
       <div className="p-6 sm:p-10 rounded-2xl bg-slate-900 border border-slate-800 text-slate-100 shadow-xl mb-8">
         <div className="flex items-center gap-2 text-xs font-mono text-sky-400 mb-2">

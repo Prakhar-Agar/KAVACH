@@ -5,9 +5,22 @@ These principles govern every line of code, database schema, API design, and fut
 ---
 
 ## 1. Client-Side Hermetic Isolation
-**Evidence files and screenshots remain strictly inside the browser memory.**
+**Kavach does not send your evidence files, answers, or drafts anywhere. Your browser loads the app itself from the host.**
 - Never upload evidence files, audio, video, or screenshots to any server, storage bucket, database, or external AI API.
 - All evidence hashing is performed locally on the user's device using the browser's native Web Crypto API (`crypto.subtle.digest('SHA-256', ...)`).
+- All fonts (Plus Jakarta Sans and Noto Sans Devanagari) are bundled locally as self-hosted npm packages via `@fontsource`. Zero external font or style CDNs are contacted.
+
+---
+
+## Content Security Policy (CSP) & Development Preview Relaxation
+Kavach enforces a strict Content Security Policy (`<meta http-equiv="Content-Security-Policy">`) in `index.html`:
+`default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' blob: data:; connect-src 'self' ws: wss:;`
+
+- **Production Rules**: Disallows all third-party network connections, remote scripts, analytics trackers, and external font or image CDNs.
+- **Preview Environment Relaxation**: In the Vite development and preview server, `connect-src 'self' ws: wss:` and `script-src 'self' 'unsafe-inline' 'unsafe-eval'` are permitted strictly to enable the Vite runtime and hot module communication between the preview server and the browser tab. Kavach application code itself issues zero remote `fetch`, `XMLHttpRequest`, or telemetry requests.
+- **Unblocked Quick Exit**: Quick Exit (<kbd>Esc</kbd> or button) sets `(window as any).__KAVACH_SUPPRESS_BEFOREUNLOAD = true`, wipes in-memory sensitive evidence and tracking entries, and navigates immediately via `window.location.replace('https://www.google.com')` without triggering browser confirmation dialogs.
+
+---
 
 ## 2. Zero Retention of Intimate Media
 **Non-consensual intimate imagery (NCII) or video must never be uploaded, processed on remote servers, or retained anywhere.**
@@ -36,8 +49,9 @@ These principles govern every line of code, database schema, API design, and fut
 ## 7. Truth in Cryptography & Legal Realities
 **Never make ungrounded legal or cryptographic guarantees.**
 - **Integrity, not Authenticity**: An SHA-256 hash proves only that a particular file bitstream matches a calculated cryptographic digest at a point in time; it does *not* prove legal authenticity, origin, chain-of-custody validity, or admissibility under Section 65B of the Indian Evidence Act / Section 63 of Bharatiya Sakshya Adhiniyam (BSA) 2023.
+- **Unverified Statutory Information**: Legal information on Kavach is general and has not yet been reviewed by a qualified lawyer. All statutory sections, timelines, and complaint templates must be verified against current official rules before being relied upon.
 - **No Anonymity Promises**: Browsers and network providers retain connection footprints; never promise 100% legal anonymity.
-- **No False Confirmation**: Never state or imply a report was successfully registered with law enforcement or platform grievance officers unless a verified webhook or official acknowledgment receipt code confirms it.
+- **No False Confirmation**: Never state or imply a report was successfully registered with law enforcement or platform grievance officers unless a verified official acknowledgment receipt confirms it. A Kavach timer is a personal reminder, not proof that a valid complaint was received.
 
 ## 8. Synthetic Data Only in Demos & Tests
 **All seed fixtures, automated tests, development mocks, and onboarding examples must use purely synthetic, fictional placeholders.**
@@ -51,7 +65,7 @@ Any user, security researcher, or legal advocate can independently verify that e
 2. Click on the **Network** tab.
 3. Check the **All** or **Fetch/XHR** filter and ensure the record button (red dot) is active.
 4. Drag and drop an image, PDF, or video into the Preserve Evidence screen (`/preserve`).
-5. Observe the Network log: **0 network requests** are sent during file selection, loading, hashing, or manifest generation.
+5. Observe the Network log: Kavach does not send your evidence files, answers, or drafts anywhere. Your browser loads the app itself from the host. Zero outgoing file payload requests are transmitted during file selection, loading, hashing, or manifest generation.
 6. The SHA-256 calculation runs exclusively within the local browser sandbox via `window.crypto.subtle.digest`.
 
 ---

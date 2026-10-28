@@ -13,9 +13,13 @@
     "test:hash": "tsx scripts/test-hash.ts",
     "check:privacy": "tsx scripts/check-privacy.ts",
     "test:report": "tsx scripts/test-report.ts",
-    "test:track": "tsx scripts/test-track.ts"
+    "test:track": "tsx scripts/test-track.ts",
+    "export:legal-register": "tsx scripts/export-legal-register.ts",
+    "export:hindi-review": "tsx scripts/export-hindi-review.ts"
   },
   "dependencies": {
+    "@fontsource/noto-sans-devanagari": "^5.3.0",
+    "@fontsource/plus-jakarta-sans": "^5.3.0",
     "@google/genai": "^2.4.0",
     "@tailwindcss/vite": "^4.3.3",
     "@vitejs/plugin-react": "^6.1.1",

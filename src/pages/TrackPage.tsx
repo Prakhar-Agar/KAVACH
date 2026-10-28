@@ -51,6 +51,7 @@ import {
   Sparkles,
   Calendar,
   Share2,
+  Scale,
 } from 'lucide-react';
 
 interface TrackPageProps {
@@ -417,6 +418,14 @@ export const TrackPage: React.FC<TrackPageProps> = ({ onNavigate }) => {
         </div>
       </div>
 
+      {/* Site-wide General Legal Notice Banner */}
+      <div className="p-4 rounded-xl bg-amber-950/40 border border-amber-800/60 text-xs sm:text-sm text-amber-200 flex items-start gap-3 no-print">
+        <AlertTriangle className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" aria-hidden="true" />
+        <div className="leading-relaxed">
+          <strong className="text-amber-100 font-semibold">{t.trackUnverifiedLegalBadge}:</strong> {t.generalLegalNotice}
+        </div>
+      </div>
+
       {/* Privacy & Client Isolation Banner */}
       <div className="p-4 rounded-xl bg-slate-900/90 border border-sky-900/60 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs text-slate-300 shadow-sm no-print">
         <div className="flex items-start gap-3">
@@ -529,13 +538,22 @@ export const TrackPage: React.FC<TrackPageProps> = ({ onNavigate }) => {
           </button>
         </div>
 
+        {/* Personal Reminder & Platform Receipt Notice */}
+        <div className="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 flex items-start gap-3 text-xs text-slate-300">
+          <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" aria-hidden="true" />
+          <div className="space-y-1">
+            <div className="font-semibold text-slate-200">{t.trackTimerPersonalReminderNotice}</div>
+            <div className="text-slate-400">{t.trackTimerPlatformReceiptNotice}</div>
+          </div>
+        </div>
+
         {timers.length === 0 ? (
           <div className="p-6 rounded-xl bg-slate-900 border border-slate-800 text-center space-y-3">
             <Clock className="w-8 h-8 text-slate-600 mx-auto" />
             <p className="text-xs text-slate-400 max-w-md mx-auto">
               {t.trackNoTimersNotice}
             </p>
-            <div className="flex flex-wrap justify-center gap-3 pt-1">
+            <div className="flex flex-wrap justify-center gap-2 pt-1">
               <button
                 type="button"
                 onClick={() => {
@@ -549,12 +567,32 @@ export const TrackPage: React.FC<TrackPageProps> = ({ onNavigate }) => {
               <button
                 type="button"
                 onClick={() => {
-                  addTimer({ timerType: '72h_acknowledgment' });
-                  showToast(isHi ? '72 घंटे का पावती टाइमर शुरू हुआ' : '72h acknowledgment timer started');
+                  addTimer({ timerType: '24h_acknowledgment' });
+                  showToast(isHi ? '24 घंटे का पावती टाइमर शुरू हुआ' : '24h acknowledgment timer started');
                 }}
                 className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-sky-300 text-xs font-medium border border-slate-700"
               >
-                {'+ 72h'}
+                {'+ 24h Ack'}
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  addTimer({ timerType: '72h_removal' });
+                  showToast(isHi ? '72 घंटे का सामग्री हटाने का टाइमर शुरू हुआ' : '72h removal timer started');
+                }}
+                className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-sky-300 text-xs font-medium border border-slate-700"
+              >
+                {'+ 72h Removal'}
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  addTimer({ timerType: '15d_resolution' });
+                  showToast(isHi ? '15 दिन का समाधान टाइमर शुरू हुआ' : '15d resolution timer started');
+                }}
+                className="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-sky-300 text-xs font-medium border border-slate-700"
+              >
+                {'+ 15d Resolution'}
               </button>
             </div>
           </div>
@@ -614,6 +652,14 @@ export const TrackPage: React.FC<TrackPageProps> = ({ onNavigate }) => {
                       <p className="text-xs text-sky-400 font-mono mt-0.5">
                         {timerLegal}
                       </p>
+                      <div className="flex flex-wrap items-center gap-2 mt-1.5">
+                        <span className="text-[10px] text-amber-300 bg-amber-950/60 px-2 py-0.5 rounded border border-amber-800/60 font-medium">
+                          {t.trackUnverifiedLegalBadge}
+                        </span>
+                        <span className="text-[10px] text-slate-400 italic">
+                          ({t.trackTimerPlatformReceiptNotice})
+                        </span>
+                      </div>
                       {linkedRec && (
                         <p className="text-[11px] text-slate-400 mt-1">
                           <span className="font-semibold text-slate-300">{isHi ? 'संबद्ध: ' : 'Linked: '}</span>
@@ -1029,6 +1075,9 @@ export const TrackPage: React.FC<TrackPageProps> = ({ onNavigate }) => {
                       <span className="text-[11px] font-bold font-mono text-amber-400 bg-amber-950/60 px-2 py-0.5 rounded border border-amber-800/60">
                         {pathLegal}
                       </span>
+                      <span className="text-[10px] text-amber-300 bg-amber-950/60 px-2 py-0.5 rounded border border-amber-800/60 font-medium">
+                        {t.trackUnverifiedLegalBadge}
+                      </span>
                     </div>
                     <h3 className="text-sm sm:text-base font-bold text-white tracking-tight">
                       {pathTitle}
@@ -1116,6 +1165,14 @@ export const TrackPage: React.FC<TrackPageProps> = ({ onNavigate }) => {
                         <pre className="p-3.5 rounded bg-slate-950 border border-slate-800 text-xs font-mono text-slate-300 whitespace-pre-wrap leading-relaxed max-h-56 overflow-y-auto">
                           {isHi ? path.templateLetter.hi : path.templateLetter.en}
                         </pre>
+                      </div>
+                    )}
+
+                    {/* Statutory Compliance Note */}
+                    {path.complianceNote && (
+                      <div className="p-3.5 rounded-xl bg-amber-950/20 border border-amber-800/40 text-xs text-amber-200/90 leading-relaxed">
+                        <strong className="text-amber-100 font-semibold">{t.trackUnverifiedLegalBadge}:</strong>{' '}
+                        {isHi ? path.complianceNote.hi : path.complianceNote.en}
                       </div>
                     )}
                   </div>
@@ -1337,23 +1394,28 @@ export const TrackPage: React.FC<TrackPageProps> = ({ onNavigate }) => {
                   {[
                     {
                       id: '24h_ncii',
-                      label: t.trackAddTimerPreset24h,
-                      sub: 'Mandatory takedown for non-consensual images & deepfakes',
+                      label: t.trackAddTimerPreset24hNcii,
+                      sub: isHi ? 'शिकायत प्राप्ति से 24 घंटे, नियम 3(2)(b)' : '24h from receipt of complaint, Rule 3(2)(b)',
                     },
                     {
-                      id: '72h_acknowledgment',
-                      label: t.trackAddTimerPreset72h,
-                      sub: 'Written acknowledgment from intermediary or police cell',
+                      id: '24h_acknowledgment',
+                      label: t.trackAddTimerPreset24hAck,
+                      sub: isHi ? 'शिकायत प्राप्ति से 24 घंटे, नियम 3(2)(a)' : '24h from receipt of complaint, Rule 3(2)(a)',
+                    },
+                    {
+                      id: '72h_removal',
+                      label: t.trackAddTimerPreset72hRemoval,
+                      sub: isHi ? 'शिकायत प्राप्ति से 72 घंटे (अन्य सामग्री)' : '72h from receipt of complaint (other content)',
                     },
                     {
                       id: '15d_resolution',
                       label: t.trackAddTimerPreset15d,
-                      sub: 'Final resolution deadline under Rule 3(2)(a)',
+                      sub: isHi ? 'शिकायत समाधान के लिए 15 दिन' : '15 days grievance resolution deadline',
                     },
                     {
                       id: 'custom',
                       label: t.trackAddTimerPresetCustom,
-                      sub: 'Set your own reminder window',
+                      sub: isHi ? 'अपनी समय सीमा तय करें' : 'Set your own reminder window',
                     },
                   ].map((preset) => (
                     <label

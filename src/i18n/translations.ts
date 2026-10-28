@@ -446,9 +446,43 @@ export interface Translations {
   trackAddTimerModalTitle: string;
   trackAddTimerSelectType: string;
   trackAddTimerPreset24h: string;
+  trackAddTimerPreset24hNcii: string;
+  trackAddTimerPreset24hAck: string;
   trackAddTimerPreset72h: string;
+  trackAddTimerPreset72hRemoval: string;
   trackAddTimerPreset15d: string;
   trackAddTimerPresetCustom: string;
+  trackTimerPersonalReminderNotice: string;
+  trackTimerPlatformReceiptNotice: string;
+  trackUnverifiedLegalBadge: string;
+  generalLegalNotice: string;
+  clearEverythingNow: string;
+  clearEverythingModalTitle: string;
+  clearEverythingModalBody: string;
+  clearEverythingConfirmBtn: string;
+  clearEverythingSuccessToast: string;
+  demoRunBtn: string;
+  demoBannerTitle: string;
+  demoBannerDesc: string;
+  demoExitBtn: string;
+  tourStartBtn: string;
+  tourModalTitle: string;
+  tourStep1Title: string;
+  tourStep1Desc: string;
+  tourStep2Title: string;
+  tourStep2Desc: string;
+  tourStep3Title: string;
+  tourStep3Desc: string;
+  tourStep4Title: string;
+  tourStep4Desc: string;
+  tourStep5Title: string;
+  tourStep5Desc: string;
+  tourStep6Title: string;
+  tourStep6Desc: string;
+  tourNextBtn: string;
+  tourPrevBtn: string;
+  tourFinishBtn: string;
+  tourSkipBtn: string;
   trackAddTimerLinkRecord: string;
   trackAddTimerNoRecordLink: string;
   trackAddTimerCustomHoursLabel: string;
@@ -568,12 +602,13 @@ export const translations: Record<Language, Translations> = {
     helpline1930Title: '1930 — Cybercrime Helpline',
     helpline1930Desc: 'Citizen financial and cyber abuse reporting helpline',
     footerIsolationTitle: 'Device Isolation Guarantee:',
-    footerIsolationText: 'Evidence files are never sent to any server. Web Crypto SHA-256 runs 100% in your browser.',
+    footerIsolationText:
+      'Kavach does not send your evidence files, answers, or drafts anywhere. Your browser loads the app itself from the host.',
     footerZeroTrackers: 'Zero trackers · No telemetry · No external logs',
     footerDisclaimerText: 'Kavach is an assistive legal and cyber-safety toolkit. It does not replace official police FIR filings or legal counsel.',
 
     heroBadge: 'Zero Data Retention',
-    heroBadgeNoUploads: 'Zero Cloud Uploads',
+    heroBadgeNoUploads: 'Zero Remote Uploads',
     heroBadgeShaOnly: 'Client-Side SHA-256 Only',
     heroTitle: 'Confidential Cyber-Abuse Response & Reporting Companion',
     heroSubtitle:
@@ -614,7 +649,8 @@ export const translations: Record<Language, Translations> = {
     learnMore: 'Learn More',
     homePrivacyStandardTitle: 'Kavach Privacy & Integrity Standard',
     homePrivacyStandard1Title: 'No Remote File Storage',
-    homePrivacyStandard1Desc: 'Files, media, and private chats never leave your browser sandbox.',
+    homePrivacyStandard1Desc:
+      'Kavach does not send your evidence files, answers, or drafts anywhere. Your browser loads the app itself from the host.',
     homePrivacyStandard2Title: 'Cryptographic Fingerprinting',
     homePrivacyStandard2Desc: 'Local SHA-256 digests create an unforgeable record of evidence integrity.',
     homePrivacyStandard3Title: 'Zero Third-Party Telemetry',
@@ -717,7 +753,7 @@ export const translations: Record<Language, Translations> = {
     privacyStaysDeviceTitle: 'What Stays on Your Device',
     privacyStaysDeviceSubtitle: 'Hermetic client-side execution',
     privacyStaysDeviceDesc:
-      'Kavach is designed around an uncompromising architectural premise: your device is a sanctuary. When dealing with intimate digital abuse, blackmail, or stalking, uploading evidence files to a remote server introduces risk of subpoena, breach, or unauthorized staff access.',
+      'Kavach does not send your evidence files, answers, or drafts anywhere. Your browser loads the app itself from the host. Cryptographic hashing and complaint generation run locally in browser memory.',
     privacyDeviceCard1Title: 'Screenshots & Media',
     privacyDeviceCard1Desc:
       "Images and videos remain entirely in your browser's private memory. They are never sent over the network.",
@@ -1003,8 +1039,8 @@ export const translations: Record<Language, Translations> = {
     trackClearConfirmDesc: 'This will delete all tracking records and countdown timers held in memory. If you have not exported your ledger, this data will be lost.',
     trackConfirmClearBtn: 'Yes, Clear All',
     trackTimersSectionTitle: 'Statutory Countdown Timers',
-    trackTimersSectionSubtitle: 'Track mandatory compliance windows under IT Rules 2021 and police inquiry standards',
-    trackNoTimersNotice: 'No active countdown timers. Start a 24-hour NCII removal timer or 72-hour grievance acknowledgment timer to track deadlines.',
+    trackTimersSectionSubtitle: 'Track compliance reminder windows under the IT Rules 2021',
+    trackNoTimersNotice: 'No active countdown timers. Start a 24-hour NCII removal timer or grievance acknowledgment timer to track reminders.',
     trackTimerActiveBadge: 'Active Countdown',
     trackTimerWarningBadge: 'Deadline Approaching (< 4h)',
     trackTimerExpiredBadge: 'Statutory Window Expired — Time to Escalate',
@@ -1019,10 +1055,44 @@ export const translations: Record<Language, Translations> = {
     trackTimerDeleteBtn: 'Delete Timer',
     trackAddTimerModalTitle: 'Start Statutory Countdown Timer',
     trackAddTimerSelectType: 'Select statutory timer preset:',
-    trackAddTimerPreset24h: '24-Hour NCII Removal Window (Rule 3(2)(b) IT Rules 2021)',
-    trackAddTimerPreset72h: '72-Hour Grievance / Police Acknowledgment (Rule 3(2)(a) IT Rules 2021)',
-    trackAddTimerPreset15d: '15-Day Grievance Resolution Window (Rule 3(2)(a) IT Rules 2021)',
+    trackAddTimerPreset24h: '24-Hour NCII Removal Window (Rule 3(2)(b))',
+    trackAddTimerPreset24hNcii: '24-Hour NCII Removal Window (Rule 3(2)(b))',
+    trackAddTimerPreset24hAck: '24-Hour Grievance Acknowledgment (Rule 3(2)(a))',
+    trackAddTimerPreset72h: '72-Hour Removal Request Window (Other Content)',
+    trackAddTimerPreset72hRemoval: '72-Hour Removal Request Window (Other Content)',
+    trackAddTimerPreset15d: '15-Day Grievance Resolution Window (Rule 3(2)(a))',
     trackAddTimerPresetCustom: 'Custom Reminder Duration',
+    trackTimerPersonalReminderNotice: 'A Kavach timer is a personal reminder, not proof that a valid complaint was received.',
+    trackTimerPlatformReceiptNotice: 'from the time the platform received your complaint',
+    trackUnverifiedLegalBadge: 'Not yet verified by a legal professional. Check the current rules before relying on this.',
+    generalLegalNotice: 'Legal information on Kavach is general and has not yet been reviewed by a lawyer. Verify before relying on it.',
+    clearEverythingNow: 'Clear everything now',
+    clearEverythingModalTitle: 'Clear all in-memory data?',
+    clearEverythingModalBody: 'This will immediately wipe all preserved evidence, tracking records, complaint drafts, and respond answers from this browser tab. This cannot be undone.',
+    clearEverythingConfirmBtn: 'Clear Everything',
+    clearEverythingSuccessToast: 'All in-memory data has been completely wiped.',
+    demoRunBtn: 'Demo with fictional data',
+    demoBannerTitle: 'Demo: fictional data',
+    demoBannerDesc: 'Viewing coherent sample data across all modes. Nothing is saved or sent.',
+    demoExitBtn: 'Exit demo and clear',
+    tourStartBtn: 'Guided Tour',
+    tourModalTitle: 'Kavach Guided Tour',
+    tourStep1Title: 'Quick Exit & Helplines',
+    tourStep1Desc: 'Press Esc at any moment or click the red Quick Exit button to immediately leave this site. 24/7 emergency helplines (112, 181, 1930) are always accessible in the footer.',
+    tourStep2Title: 'Bilingual English & Hindi',
+    tourStep2Desc: 'Switch smoothly between English and natural, everyday Hindi at any time using the header language toggle. All playbooks, drafts, and tools are 100% bilingual.',
+    tourStep3Title: 'Respond: First-Hour Crisis Triage',
+    tourStep3Desc: 'Assess immediate danger, choose from 7 cyber-abuse categories, and receive clear Do Now, Do Not Do, and platform lockdown checklists.',
+    tourStep4Title: 'Preserve: Cryptographic Evidence Vault',
+    tourStep4Desc: 'Compute tamper-evident SHA-256 hashes locally in your browser using the Web Crypto API without uploading files anywhere, and export a canonical manifest.',
+    tourStep5Title: 'Report: Structured Police & Takedown Drafter',
+    tourStep5Desc: 'Generate deterministic complaints following the strict 7-section police format, complete with client-side entity redaction to conceal personal PII.',
+    tourStep6Title: 'Track: Statutory Timers & Escalations',
+    tourStep6Desc: 'Manage complaint reference numbers, track statutory deadlines (24h NCII removal, 72h removal), view escalation paths if police or platforms fail to act, and export your portable ledger.',
+    tourNextBtn: 'Next',
+    tourPrevBtn: 'Previous',
+    tourFinishBtn: 'Got it',
+    tourSkipBtn: 'Skip Tour',
     trackAddTimerLinkRecord: 'Link to a complaint record (optional):',
     trackAddTimerNoRecordLink: 'None (Standalone timer)',
     trackAddTimerCustomHoursLabel: 'Custom duration (in hours):',
@@ -1140,12 +1210,13 @@ export const translations: Record<Language, Translations> = {
     helpline1930Title: '1930 — साइबर अपराध हेल्पलाइन',
     helpline1930Desc: 'नागरिक साइबर अपराध एवं वित्तीय धोखाधड़ी हेल्पलाइन',
     footerIsolationTitle: 'डिवाइस गोपनीयता आश्वासन:',
-    footerIsolationText: 'साक्ष्य फ़ाइलें कभी किसी सर्वर पर नहीं भेजी जाती हैं। SHA-256 हैशिंग केवल आपके ब्राउज़र में होती है।',
+    footerIsolationText:
+      'कवच आपकी साक्ष्य फ़ाइलें, उत्तर या शिकायत ड्राफ्ट कहीं भी नहीं भेजता है। आपका ब्राउज़र केवल होस्ट से ऐप लोड करता है।',
     footerZeroTrackers: 'शून्य ट्रैकर · कोई टेलीमेट्री नहीं · कोई बाहरी लॉग नहीं',
     footerDisclaimerText: 'कवच एक कानूनी एवं साइबर सुरक्षा सहायक उपकरण है। यह पुलिस प्राथमिकी (FIR) अथवा आधिकारिक कानूनी सलाह का विकल्प नहीं है।',
 
     heroBadge: 'शून्य डेटा भंडारण',
-    heroBadgeNoUploads: 'क्लाउड पर शून्य अपलोड',
+    heroBadgeNoUploads: 'शून्य रिमोट अपलोड',
     heroBadgeShaOnly: 'केवल ब्राउज़र में SHA-256',
     heroTitle: 'सुरक्षित, निजी साइबर-उत्पीड़न सहायता एवं रिपोर्टिंग साथी',
     heroSubtitle:
@@ -1186,7 +1257,8 @@ export const translations: Record<Language, Translations> = {
     learnMore: 'विस्तार से जानें',
     homePrivacyStandardTitle: 'कवच गोपनीयता एवं सत्यनिष्ठा मानक',
     homePrivacyStandard1Title: 'कोई सर्वर फ़ाइल भंडारण नहीं',
-    homePrivacyStandard1Desc: 'फ़ाइलें, फ़ोटो और निजी चैट कभी आपके ब्राउज़र से बाहर नहीं जाती हैं।',
+    homePrivacyStandard1Desc:
+      'कवच आपकी साक्ष्य फ़ाइलें, उत्तर या शिकायत ड्राफ्ट कहीं भी नहीं भेजता है। आपका ब्राउज़र केवल होस्ट से ऐप लोड करता है।',
     homePrivacyStandard2Title: 'क्रिप्टोग्राफ़िक फ़िंगरप्रिंटिंग',
     homePrivacyStandard2Desc: 'स्थानीय SHA-256 डाइजेस्ट साक्ष्यों के साथ छेड़छाड़ न होने का पक्का प्रमाण बनाते हैं।',
     homePrivacyStandard3Title: 'शून्य थर्ड-पार्टी टेलीमेट्री',
@@ -1289,7 +1361,7 @@ export const translations: Record<Language, Translations> = {
     privacyStaysDeviceTitle: 'आपके डिवाइस पर क्या सुरक्षित रहता है',
     privacyStaysDeviceSubtitle: 'पूरी तरह स्थानीय ब्राउज़र प्रोसेसिंग',
     privacyStaysDeviceDesc:
-      'कवच एक स्पष्ट सिद्धांत पर बनाया गया है: आपका डिवाइस आपका सुरक्षित आश्रय है। ऑनलाइन ब्लैकमेल या उत्पीड़न के मामलों में सबूतों को किसी बाहरी सर्वर पर अपलोड करने से डेटा लीक होने का खतरा बढ़ जाता है।',
+      'कवच आपकी साक्ष्य फ़ाइलें, उत्तर या शिकायत ड्राफ्ट कहीं भी नहीं भेजता है। आपका ब्राउज़र केवल होस्ट से ऐप लोड करता है। क्रिप्टोग्राफ़िक हैशिंग और शिकायत निर्माण स्थानीय ब्राउज़र मेमोरी में चलता है।',
     privacyDeviceCard1Title: 'स्क्रीनशॉट और मीडिया फ़ाइलें',
     privacyDeviceCard1Desc:
       'फ़ोटो और वीडियो केवल आपके ब्राउज़र की निजी मेमोरी में रहते हैं। वे कभी इंटरनेट पर नहीं भेजे जाते।',
@@ -1575,8 +1647,8 @@ export const translations: Record<Language, Translations> = {
     trackClearConfirmDesc: 'यह मेमोरी में मौजूद सभी शिकायत रिकॉर्ड और टाइमर मिटा देगा। यदि आपने लेज़र निर्यात नहीं किया है, तो यह डेटा खो जाएगा।',
     trackConfirmClearBtn: 'हाँ, सब साफ करें',
     trackTimersSectionTitle: 'वैधानिक उल्टी गिनती टाइमर',
-    trackTimersSectionSubtitle: 'आईटी नियम 2021 एवं पुलिस जांच मानकों के अंतर्गत अनिवार्य समय सीमाओं की निगरानी',
-    trackNoTimersNotice: 'कोई सक्रिय टाइमर नहीं है। समय सीमा ट्रैक करने के लिए 24 घंटे का अंतरंग सामग्री निष्कासन टाइमर या 72 घंटे का पावती टाइमर शुरू करें।',
+    trackTimersSectionSubtitle: 'आईटी नियम 2021 के अंतर्गत अनुस्मारक समय सीमाओं की निगरानी',
+    trackNoTimersNotice: 'कोई सक्रिय टाइमर नहीं है। समय सीमा ट्रैक करने के लिए 24 घंटे का अंतरंग सामग्री निष्कासन टाइमर या शिकायत पावती टाइमर शुरू करें।',
     trackTimerActiveBadge: 'सक्रिय उल्टी गिनती',
     trackTimerWarningBadge: 'समय सीमा निकट (< 4 घंटे)',
     trackTimerExpiredBadge: 'वैधानिक समय सीमा समाप्त — आगे कदम उठाएं',
@@ -1591,10 +1663,44 @@ export const translations: Record<Language, Translations> = {
     trackTimerDeleteBtn: 'टाइमर हटाएं',
     trackAddTimerModalTitle: 'नया कानूनी टाइमर शुरू करें',
     trackAddTimerSelectType: 'वैधानिक समय सीमा चुनें:',
-    trackAddTimerPreset24h: '24 घंटे की NCII सामग्री निष्कासन समय सीमा (नियम 3(2)(b) IT Rules 2021)',
-    trackAddTimerPreset72h: '72 घंटे की शिकायत पावती एवं पुलिस संज्ञान समय सीमा (नियम 3(2)(a) IT Rules 2021)',
-    trackAddTimerPreset15d: '15 दिन की पूर्ण शिकायत निस्तारण समय सीमा (नियम 3(2)(a) IT Rules 2021)',
+    trackAddTimerPreset24h: '24 घंटे की अंतरंग सामग्री निष्कासन समय सीमा (नियम 3(2)(b))',
+    trackAddTimerPreset24hNcii: '24 घंटे की अंतरंग सामग्री निष्कासन समय सीमा (नियम 3(2)(b))',
+    trackAddTimerPreset24hAck: '24 घंटे की शिकायत पावती (नियम 3(2)(a))',
+    trackAddTimerPreset72h: '72 घंटे की अन्य सामग्री निष्कासन समय सीमा',
+    trackAddTimerPreset72hRemoval: '72 घंटे की अन्य सामग्री निष्कासन समय सीमा',
+    trackAddTimerPreset15d: '15 दिन की पूर्ण शिकायत निस्तारण समय सीमा (नियम 3(2)(a))',
     trackAddTimerPresetCustom: 'कस्टम अनुस्मारक अवधि',
+    trackTimerPersonalReminderNotice: 'कवच टाइमर एक व्यक्तिगत अनुस्मारक है, यह इस बात का प्रमाण नहीं है कि वैध शिकायत प्राप्त हुई थी।',
+    trackTimerPlatformReceiptNotice: 'प्लेटफॉर्म द्वारा आपकी शिकायत प्राप्त करने के समय से',
+    trackUnverifiedLegalBadge: 'कानूनी पेशेवर द्वारा अभी तक सत्यापित नहीं किया गया है। इस पर निर्भर रहने से पहले वर्तमान नियमों की जांच करें।',
+    generalLegalNotice: 'कवच पर कानूनी जानकारी सामान्य है और अभी तक किसी वकील द्वारा इसकी समीक्षा नहीं की गई है। इस पर भरोसा करने से पहले सत्यापन करें।',
+    clearEverythingNow: 'सब कुछ अभी मिटाएं',
+    clearEverythingModalTitle: 'क्या आप सभी डेटा मिटाना चाहते हैं?',
+    clearEverythingModalBody: 'यह इस ब्राउज़र टैब से सभी संरक्षित साक्ष्य, ट्रैकिंग रिकॉर्ड, शिकायत ड्राफ्ट और उत्तर तुरंत मिटा देगा। इसे पूर्ववत नहीं किया जा सकता है।',
+    clearEverythingConfirmBtn: 'सब कुछ मिटाएं',
+    clearEverythingSuccessToast: 'सभी डेटा पूरी तरह से मिटा दिया गया है।',
+    demoRunBtn: 'काल्पनिक डेटा के साथ डेमो',
+    demoBannerTitle: 'डेमो: काल्पनिक डेटा',
+    demoBannerDesc: 'सभी मोड में काल्पनिक डेटा देख रहे हैं। कुछ भी सहेजा या भेजा नहीं जा रहा है।',
+    demoExitBtn: 'डेमो से बाहर निकलें और डेटा मिटाएं',
+    tourStartBtn: 'मार्गदर्शित टूर',
+    tourModalTitle: 'कवच मार्गदर्शित टूर',
+    tourStep1Title: 'त्वरित निकास एवं हेल्पलाइन',
+    tourStep1Desc: 'किसी भी क्षण Esc दबाएं या लाल Quick Exit बटन पर क्लिक करके तुरंत इस साइट से बाहर निकलें। 24/7 आपातकालीन हेल्पलाइन (112, 181, 1930) फुटर में हमेशा उपलब्ध हैं।',
+    tourStep2Title: 'द्विभाषी अंग्रेज़ी एवं हिंदी',
+    tourStep2Desc: 'शीर्ष हेडर टॉगल से किसी भी समय अंग्रेज़ी और सरल, सहज हिंदी के बीच बदलें। सभी प्लेबुक, ड्राफ्ट और टूल्स 100% द्विभाषी हैं।',
+    tourStep3Title: 'Respond: पहले घंटे का सुरक्षा प्लेबुक',
+    tourStep3Desc: 'तात्कालिक खतरे का आकलन करें, 7 साइबर अपराध श्रेणियों में से चुनें, और क्या करें, क्या न करें तथा प्लेटफॉर्म सुरक्षा चेकलिस्ट प्राप्त करें।',
+    tourStep4Title: 'Preserve: सुरक्षित साक्ष्य वॉल्ट',
+    tourStep4Desc: 'फ़ाइलों को कहीं भी अपलोड किए बिना वेब क्रिप्टो एपीआई का उपयोग करके अपने ब्राउज़र में स्थानीय रूप से SHA-256 हैश तैयार करें और मैनिफेस्ट डाउनलोड करें।',
+    tourStep5Title: 'Report: औपचारिक शिकायत एवं निष्कासन ड्राफ्टर',
+    tourStep5Desc: 'व्यक्तिगत पहचान छिपाने के लिए क्लाइंट-साइड रिडक्शन के साथ, 7-भागों वाले पुलिस प्रारूप में शिकायत ड्राफ्ट तैयार करें।',
+    tourStep6Title: 'Track: कानूनी समय सीमा एवं अनुवर्ती कदम',
+    tourStep6Desc: 'शिकायत संदर्भ संख्या प्रबंधित करें, कानूनी समय सीमा (24 घंटे अंतरंग सामग्री निष्कासन, 72 घंटे अन्य सामग्री) ट्रैक करें, और पोर्टेबल लेज़र निर्यात करें।',
+    tourNextBtn: 'आगे',
+    tourPrevBtn: 'पीछे',
+    tourFinishBtn: 'समझ गए',
+    tourSkipBtn: 'टूर छोड़ें',
     trackAddTimerLinkRecord: 'किसी दर्ज शिकायत से जोड़ें (वैकल्पिक):',
     trackAddTimerNoRecordLink: 'कोई नहीं (स्वतंत्र टाइमर)',
     trackAddTimerCustomHoursLabel: 'अवधि (घंटों में):',

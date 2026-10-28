@@ -33,8 +33,8 @@ const ALLOWED_LATIN_TERMS = new Set([
   // Legal acts and terms
   'it', 'act', 'bns', 'bnss', 'crpc', 'fir', 'zero', 'gd/dd', 'gd', 'dd', 'bsa', 'ipc', 'rule', 'rules', 'under',
   // Sections & Rules
-  '66e', '67', '67a', '66d', '77', '78', '79', '63', '65b', '72', '228a', '154', '173', '26', '164', '3', '2', 'a', 'b', '3(2)(b)',
-  '3a', '175', '175(3)', '175(4)', '3(2)(a)',
+  '66e', '67', '67a', '66d', '77', '78', '79', '63', '65b', '72', '228a', '154', '173', '26', '164', '3', '2', 'a', 'b', 'c', 'd', '3(2)(b)',
+  '3a', '175', '175(3)', '175(4)', '3(2)(a)', '3(1)(d)',
   // Technical standards, acronyms and standards
   'sha', 'sha-256', '256', '2fa', 'sms', 'otp', 'ai', 'json', 'pdf', 'url', 'urls', 'upi', 'pin', 'api',
   'web', 'crypto', 'subtle', 'digest', 'isp', 'crypto.subtle.digest', 'ncii', 'io', 'sp', 'dcp', 'sop', 'grv',
@@ -49,7 +49,7 @@ const ALLOWED_LATIN_TERMS = new Set([
   'terminate', 'all', 'other', 'redact', 'screenshot', 'verify', 'manifest', 'mb', 'utc', 'preview',
   'png', 'jpg', 'jpeg', 'mp4', 'txt', 'm4a', 'pdf', 'ncrp', 'count', '354c', '354d', '66c', 'drafting', 'placeholders',
   'english', 'takedown', 'redacted', 'ticket', 'number', 'ip', 'logs', 'vpa', 'ledger', 'statutory', 'notice',
-  'tracking', 'grievance', 'office'
+  'tracking', 'grievance', 'office', 'affidavit', 'legal', 'aid', 'proviso', '173(4)', '173(1)', '173(2)'
 ]);
 
 let errorsFound = 0;

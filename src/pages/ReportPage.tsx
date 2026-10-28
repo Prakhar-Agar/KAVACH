@@ -357,6 +357,14 @@ export const ReportPage: React.FC<ReportPageProps> = ({ onNavigate }) => {
         </p>
       </div>
 
+      {/* Site-wide General Legal Notice Banner */}
+      <div className="mb-6 p-4 rounded-xl bg-amber-950/40 border border-amber-800/60 text-xs sm:text-sm text-amber-200 flex items-start gap-3 no-print">
+        <AlertTriangle className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" aria-hidden="true" />
+        <div className="leading-relaxed">
+          <strong className="text-amber-100 font-semibold">{t.trackUnverifiedLegalBadge}:</strong> {t.generalLegalNotice}
+        </div>
+      </div>
+
       {/* Step Progress Navigation Bar */}
       <div className="mb-8 p-4 rounded-xl bg-slate-900 border border-slate-800 flex flex-wrap items-center justify-between gap-4 no-print">
         <div className="flex items-center gap-3">

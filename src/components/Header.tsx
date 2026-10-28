@@ -5,7 +5,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
-import { Shield, ExternalLink, AlertTriangle, X } from 'lucide-react';
+import { useAppState } from '../state/AppStateContext';
+import { Shield, ExternalLink, AlertTriangle, X, Trash2 } from 'lucide-react';
 
 interface HeaderProps {
   currentPath: string;
@@ -14,14 +15,10 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
   const { language, setLanguage, t } = useLanguage();
+  const { executeQuickExit, setShowClearModal } = useAppState();
   const [showExitModal, setShowExitModal] = useState(false);
 
-  // Trigger quick exit immediately
-  const executeQuickExit = () => {
-    window.location.replace('https://www.google.com');
-  };
-
-  // Keyboard shortcut listener for safety (Escape triggers quick exit immediately, unless typing in a field)
+  // Keyboard shortcut listener for safety (Escape triggers quick exit immediately, unless actively typing in an input)
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -32,10 +29,9 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
             tagName === 'input' ||
             tagName === 'textarea' ||
             tagName === 'select' ||
-            target.isContentEditable ||
-            target.closest('[role="dialog"]')
+            target.isContentEditable
           ) {
-            // Do not fire quick exit while typing in a form or interacting with a dialog
+            // Do not fire quick exit while actively typing in a form field
             return;
           }
         }
@@ -47,7 +43,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, []);
+  }, [executeQuickExit]);
 
   const navLinks = [
     { id: '/', label: t.navHome },
@@ -99,8 +95,8 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
               })}
             </nav>
 
-            {/* Zone 3: Language Toggle & Quick Exit Action */}
-            <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
+            {/* Zone 3: Language Toggle, Clear All & Quick Exit Action */}
+            <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
               {/* Language Segmented Control */}
               <div className="flex items-center bg-slate-800 border border-slate-700 rounded-lg p-0.5 shrink-0">
                 <button
@@ -128,6 +124,17 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                   हिंदी
                 </button>
               </div>
+
+              {/* Clear Everything Now Action Button */}
+              <button
+                type="button"
+                onClick={() => setShowClearModal(true)}
+                className="p-1.5 text-slate-400 hover:text-rose-400 hover:bg-slate-800 rounded-lg transition-colors shrink-0 focus-visible:outline-2 focus-visible:outline-rose-400"
+                title={t.clearEverythingNow}
+                aria-label={t.clearEverythingNow}
+              >
+                <Trash2 className="w-4 h-4" />
+              </button>
 
               {/* Quick Exit Button (High-contrast safety red, 360px responsive) */}
               <button
@@ -201,22 +208,36 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
               <span>{t.quickExitKeyboardText}</span>
             </div>
 
-            <div className="flex items-center justify-end gap-3">
+            <div className="pt-2 border-t border-slate-800 flex items-center justify-between gap-3">
               <button
                 type="button"
-                onClick={() => setShowExitModal(false)}
-                className="px-4 py-2 text-xs font-medium text-slate-300 hover:text-white bg-slate-800 rounded-lg hover:bg-slate-700 transition-colors"
+                onClick={() => {
+                  setShowExitModal(false);
+                  setShowClearModal(true);
+                }}
+                className="text-xs text-rose-400 hover:text-rose-300 font-medium flex items-center gap-1.5 transition"
               >
-                {t.quickExitCancel}
+                <Trash2 className="w-3.5 h-3.5" />
+                <span>{t.clearEverythingNow}</span>
               </button>
-              <button
-                type="button"
-                onClick={executeQuickExit}
-                className="px-4 py-2 text-xs font-bold text-white bg-red-600 hover:bg-red-700 rounded-lg transition-colors flex items-center gap-1.5"
-              >
-                <span>{t.quickExitModalAction}</span>
-                <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
-              </button>
+
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => setShowExitModal(false)}
+                  className="px-3.5 py-2 text-xs font-medium text-slate-300 hover:text-white bg-slate-800 rounded-lg hover:bg-slate-700 transition-colors"
+                >
+                  {t.quickExitCancel}
+                </button>
+                <button
+                  type="button"
+                  onClick={executeQuickExit}
+                  className="px-4 py-2 text-xs font-bold text-white bg-red-600 hover:bg-red-700 rounded-lg transition-colors flex items-center gap-1.5"
+                >
+                  <span>{t.quickExitModalAction}</span>
+                  <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" />
+                </button>
+              </div>
             </div>
           </div>
         </div>

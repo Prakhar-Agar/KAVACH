@@ -8,6 +8,7 @@ import { HashRouter as Router, Routes, Route, useNavigate, useLocation } from 'r
 import { LanguageProvider } from './i18n/LanguageContext';
 import { EvidenceProvider } from './state/EvidenceContext';
 import { TrackingProvider } from './state/TrackingContext';
+import { AppStateProvider } from './state/AppStateContext';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { HomePage } from './pages/HomePage';
@@ -54,9 +55,11 @@ export default function App() {
     <LanguageProvider>
       <EvidenceProvider>
         <TrackingProvider>
-          <Router>
-            <AppShell />
-          </Router>
+          <AppStateProvider>
+            <Router>
+              <AppShell />
+            </Router>
+          </AppStateProvider>
         </TrackingProvider>
       </EvidenceProvider>
     </LanguageProvider>

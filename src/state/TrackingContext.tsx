@@ -63,8 +63,12 @@ export const TrackingProvider: React.FC<{ children: ReactNode }> = ({ children }
   const [timers, setTimers] = useState<StatutoryTimer[]>([]);
 
   // Warn if user attempts to close or reload while tracking records exist in memory
+  // Quick Exit MUST NEVER be blocked: if __KAVACH_SUPPRESS_BEFOREUNLOAD is set, exit immediately
   useEffect(() => {
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      if ((window as any).__KAVACH_SUPPRESS_BEFOREUNLOAD) {
+        return;
+      }
       if (records.length > 0 || timers.length > 0) {
         e.preventDefault();
         e.returnValue = t.preserveUnsavedLeaveWarning;
@@ -77,6 +81,21 @@ export const TrackingProvider: React.FC<{ children: ReactNode }> = ({ children }
       window.removeEventListener('beforeunload', handleBeforeUnload);
     };
   }, [records.length, timers.length, t.preserveUnsavedLeaveWarning]);
+
+  // Listen for clear all data and quick exit events
+  useEffect(() => {
+    const handleClear = () => {
+      setRecords([]);
+      setTimers([]);
+    };
+
+    window.addEventListener('kavach:clear-all-data', handleClear);
+    window.addEventListener('kavach:quick-exit', handleClear);
+    return () => {
+      window.removeEventListener('kavach:clear-all-data', handleClear);
+      window.removeEventListener('kavach:quick-exit', handleClear);
+    };
+  }, []);
 
   // Periodic timer status updater (every 10 seconds, recalculates active/warning/expired)
   useEffect(() => {
@@ -206,6 +225,9 @@ export const TrackingProvider: React.FC<{ children: ReactNode }> = ({ children }
       durationHours,
       expiresAt: expiresAt.toISOString(),
       status: 'active',
+      source: preset.source,
+      lastReviewed: preset.lastReviewed,
+      verifiedBy: preset.verifiedBy,
     };
 
     setTimers((prev) => [newTimer, ...prev]);

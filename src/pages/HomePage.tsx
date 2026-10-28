@@ -5,6 +5,7 @@
 
 import React from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
+import { useAppState } from '../state/AppStateContext';
 import { 
   ShieldAlert, 
   FileCheck2, 
@@ -15,7 +16,9 @@ import {
   Lock, 
   Shield, 
   Info,
-  CheckCircle2
+  CheckCircle2,
+  PlayCircle,
+  Compass
 } from 'lucide-react';
 
 interface HomePageProps {
@@ -24,6 +27,12 @@ interface HomePageProps {
 
 export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
   const { t } = useLanguage();
+  const { runDemoScenario, startTour, isDemoMode } = useAppState();
+
+  const handleRunDemo = () => {
+    runDemoScenario();
+    onNavigate('/respond');
+  };
 
   const modeCards = [
     {
@@ -86,6 +95,30 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         <p className="mt-4 text-base sm:text-lg text-slate-300 max-w-3xl leading-relaxed">
           {t.heroSubtitle}
         </p>
+
+        {/* Action Bar: Run Demo & Guided Tour */}
+        <div className="mt-6 flex flex-wrap items-center gap-3">
+          <button
+            type="button"
+            onClick={handleRunDemo}
+            className="inline-flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-gradient-to-r from-sky-600 to-indigo-600 hover:from-sky-500 hover:to-indigo-500 text-white font-semibold text-sm shadow-md hover:shadow-sky-500/20 transition-all focus-visible:outline-2 focus-visible:outline-sky-400"
+          >
+            <PlayCircle className="w-4 h-4 text-sky-200" aria-hidden="true" />
+            <span>{t.demoRunBtn}</span>
+            <span className="text-xs bg-black/30 px-2 py-0.5 rounded font-mono text-sky-200 font-normal">
+              {t.demoBannerTitle}
+            </span>
+          </button>
+
+          <button
+            type="button"
+            onClick={startTour}
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-sm border border-slate-700 transition-all focus-visible:outline-2 focus-visible:outline-sky-400"
+          >
+            <Compass className="w-4 h-4 text-sky-400" aria-hidden="true" />
+            <span>{t.tourStartBtn}</span>
+          </button>
+        </div>
 
         {/* Quick Safety Notice */}
         <div className="mt-6 p-4 rounded-xl bg-slate-900 border border-slate-800 flex items-start gap-3 text-sm text-slate-300">

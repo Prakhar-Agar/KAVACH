@@ -9,7 +9,7 @@
  * 2. It is provided strictly as suggestions for a qualified legal professional or police officer to review.
  * 3. Never claim or state as a finding that a crime "has been committed under" any section.
  * 4. Entries with verifiedBy = null display "Not yet verified by a legal professional".
- * 5. Strictly includes only the 11 authorized sections from IT Act and BNS.
+ * 5. Strictly includes only the authorized sections from IT Act and BNS.
  */
 
 import { CategoryKey } from './playbooks';
@@ -26,6 +26,7 @@ export interface LegalProvision {
   title: BilingualText;
   description: BilingualText;
   categories: (CategoryKey | 'general' | 'not_sure')[];
+  source: string;
   lastReviewed: string;
   verifiedBy: string | null;
 }
@@ -44,6 +45,7 @@ export const LEGAL_PROVISIONS: LegalProvision[] = [
       hi: 'किसी अन्य व्यक्ति के इलेक्ट्रॉनिक हस्ताक्षर, पासवर्ड या विशिष्ट पहचान का धोखाधड़ी या बेईमानी से उपयोग।',
     },
     categories: ['account_compromise', 'impersonation'],
+    source: 'Section 66C, Information Technology Act, 2000',
     lastReviewed: '2026-10-28',
     verifiedBy: null,
   },
@@ -60,6 +62,7 @@ export const LEGAL_PROVISIONS: LegalProvision[] = [
       hi: 'किसी संचार उपकरण या कंप्यूटर संसाधन के माध्यम से किसी अन्य व्यक्ति का रूप धारण कर धोखाधड़ी करना।',
     },
     categories: ['impersonation', 'blackmail'],
+    source: 'Section 66D, Information Technology Act, 2000',
     lastReviewed: '2026-10-28',
     verifiedBy: null,
   },
@@ -76,6 +79,7 @@ export const LEGAL_PROVISIONS: LegalProvision[] = [
       hi: 'सहमति के बिना किसी व्यक्ति के निजी अंगों की तस्वीरें खींचना, प्रकाशित करना या प्रसारित करना।',
     },
     categories: ['ncii_threat', 'harassment'],
+    source: 'Section 66E, Information Technology Act, 2000',
     lastReviewed: '2026-10-28',
     verifiedBy: null,
   },
@@ -92,6 +96,7 @@ export const LEGAL_PROVISIONS: LegalProvision[] = [
       hi: 'इलेक्ट्रॉनिक रूप में किसी भी ऐसी सामग्री को प्रकाशित या प्रसारित करना जो अश्लील हो।',
     },
     categories: ['ncii_threat', 'harassment'],
+    source: 'Section 67, Information Technology Act, 2000',
     lastReviewed: '2026-10-28',
     verifiedBy: null,
   },
@@ -108,6 +113,7 @@ export const LEGAL_PROVISIONS: LegalProvision[] = [
       hi: 'इलेक्ट्रॉनिक रूप में स्पष्ट यौन कृत्य या आचरण से युक्त सामग्री को प्रकाशित या प्रसारित करना।',
     },
     categories: ['ncii_threat', 'blackmail'],
+    source: 'Section 67A, Information Technology Act, 2000',
     lastReviewed: '2026-10-28',
     verifiedBy: null,
   },
@@ -124,6 +130,7 @@ export const LEGAL_PROVISIONS: LegalProvision[] = [
       hi: 'किसी महिला को निजी पलों में देखना, उसकी तस्वीर खींचना, या सहमति के बिना ऐसी तस्वीरों का प्रसार करना।',
     },
     categories: ['ncii_threat', 'stalking'],
+    source: 'Section 77, Bharatiya Nyaya Sanhita, 2023',
     lastReviewed: '2026-10-28',
     verifiedBy: null,
   },
@@ -140,6 +147,7 @@ export const LEGAL_PROVISIONS: LegalProvision[] = [
       hi: 'अनिच्छा जताने के बावजूद इंटरनेट, ईमेल या सोशल मीडिया पर किसी महिला की गतिविधियों पर नज़र रखना या संपर्क साधना।',
     },
     categories: ['stalking', 'harassment'],
+    source: 'Section 78, Bharatiya Nyaya Sanhita, 2023',
     lastReviewed: '2026-10-28',
     verifiedBy: null,
   },
@@ -156,6 +164,7 @@ export const LEGAL_PROVISIONS: LegalProvision[] = [
       hi: 'महिला की लज्जा या गरिमा को ठेस पहुँचाने के इरादे से किसी शब्द, ध्वनि, इशारे या संदेश का प्रयोग करना।',
     },
     categories: ['harassment', 'stalking', 'impersonation'],
+    source: 'Section 79, Bharatiya Nyaya Sanhita, 2023',
     lastReviewed: '2026-10-28',
     verifiedBy: null,
   },
@@ -172,6 +181,7 @@ export const LEGAL_PROVISIONS: LegalProvision[] = [
       hi: 'किसी व्यक्ति को नुकसान के भय में डालकर जबरन पैसे, संपत्ति या गोपनीय सामग्री देने के लिए विवश करना।',
     },
     categories: ['blackmail'],
+    source: 'Section 308, Bharatiya Nyaya Sanhita, 2023',
     lastReviewed: '2026-10-28',
     verifiedBy: null,
   },
@@ -188,6 +198,7 @@ export const LEGAL_PROVISIONS: LegalProvision[] = [
       hi: 'किसी व्यक्ति को उसके शरीर, प्रतिष्ठा या संपत्ति को क्षति पहुँचाने की धमकी देकर उसकी इच्छा के विरुद्ध कार्य कराना।',
     },
     categories: ['blackmail', 'harassment', 'ncii_threat'],
+    source: 'Section 351, Bharatiya Nyaya Sanhita, 2023',
     lastReviewed: '2026-10-28',
     verifiedBy: null,
   },
@@ -204,6 +215,7 @@ export const LEGAL_PROVISIONS: LegalProvision[] = [
       hi: 'कोई अन्य व्यक्ति होने का ढोंग करके या जानबूझकर किसी अन्य व्यक्ति के नाम का उपयोग करके धोखाधड़ी करना।',
     },
     categories: ['impersonation'],
+    source: 'Section 319, Bharatiya Nyaya Sanhita, 2023',
     lastReviewed: '2026-10-28',
     verifiedBy: null,
   },

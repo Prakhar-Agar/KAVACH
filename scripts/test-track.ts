@@ -43,13 +43,22 @@ const nciiPreset = STATUTORY_TIMER_PRESETS['24h_ncii'];
 assert(nciiPreset.durationHours === 24, '24h NCII timer duration is exactly 24 hours');
 assert(nciiPreset.legalBasis.en.includes('3(2)(b)'), '24h NCII timer cites Rule 3(2)(b) in English');
 assert(nciiPreset.legalBasis.hi.includes('3(2)(b)'), '24h NCII timer cites Rule 3(2)(b) in Hindi');
+assert(nciiPreset.verifiedBy === null, 'NCII preset carries verifiedBy: null');
+assert(Boolean(nciiPreset.source && nciiPreset.lastReviewed), 'NCII preset carries source and lastReviewed');
 
-const ackPreset = STATUTORY_TIMER_PRESETS['72h_acknowledgment'];
-assert(ackPreset.durationHours === 72, '72h acknowledgment timer duration is exactly 72 hours');
-assert(ackPreset.legalBasis.en.includes('3(2)(a)'), '72h acknowledgment timer cites Rule 3(2)(a)');
+const ackPreset = STATUTORY_TIMER_PRESETS['24h_acknowledgment'];
+assert(ackPreset.durationHours === 24, '24h grievance acknowledgment timer duration is exactly 24 hours');
+assert(ackPreset.legalBasis.en.includes('3(2)(a)'), '24h grievance acknowledgment timer cites Rule 3(2)(a)');
+assert(ackPreset.verifiedBy === null, 'Grievance acknowledgment carries verifiedBy: null');
+
+const removalPreset = STATUTORY_TIMER_PRESETS['72h_removal'];
+assert(removalPreset.durationHours === 72, '72h removal request timer duration is exactly 72 hours');
+assert(removalPreset.description.en.includes('72 hours'), '72h removal timer specifies 72 hours');
+assert(removalPreset.verifiedBy === null, 'Removal request timer carries verifiedBy: null');
 
 const resolutionPreset = STATUTORY_TIMER_PRESETS['15d_resolution'];
 assert(resolutionPreset.durationHours === 360, '15-day grievance resolution timer duration is 360 hours (15 days)');
+assert(resolutionPreset.verifiedBy === null, 'Resolution timer carries verifiedBy: null');
 
 // Test timer expiration arithmetic
 const now = Date.now();
@@ -61,6 +70,9 @@ const expiredTimer: StatutoryTimer = {
   startedAt: new Date(now - 25 * 60 * 60 * 1000).toISOString(),
   durationHours: 24,
   expiresAt: new Date(now - 1 * 60 * 60 * 1000).toISOString(),
+  source: nciiPreset.source,
+  lastReviewed: nciiPreset.lastReviewed,
+  verifiedBy: null,
   status: 'expired',
 };
 const remainingMs = new Date(expiredTimer.expiresAt).getTime() - now;
@@ -131,8 +143,10 @@ const policeEscalation = ESCALATION_PATHS.find((p) => p.id === 'police_refusal')
 assert(!!policeEscalation, 'Police refusal escalation path present');
 assert(Boolean(policeEscalation?.legalBasis.en.includes('173') && policeEscalation?.legalBasis.en.includes('175')), 'Police refusal cites BNSS Section 173 and 175');
 assert(Boolean(policeEscalation?.steps.some((s) => s.desc.en.includes('Zero FIR'))), 'Police refusal highlights Zero FIR mandate');
-assert(Boolean(policeEscalation?.steps.some((s) => s.desc.en.includes('Superintendent of Police'))), 'Police refusal highlights SP representation under Sec 175(3)');
-assert(Boolean(policeEscalation?.steps.some((s) => s.desc.en.includes('Judicial Magistrate'))), 'Police refusal highlights Judicial Magistrate application under Sec 175(4)');
+assert(Boolean(policeEscalation?.steps.some((s) => s.desc.en.includes('173(4)'))), 'Police refusal highlights SP representation under Section 173(4) BNSS');
+assert(Boolean(policeEscalation?.steps.some((s) => s.desc.en.includes('175(3)'))), 'Police refusal highlights Judicial Magistrate application under Section 175(3) BNSS');
+assert(!JSON.stringify(ESCALATION_PATHS).includes('175(4)'), 'No incorrect references to Section 175(4) exist in escalation paths');
+assert(policeEscalation?.verifiedBy === null, 'Police refusal carries verifiedBy: null');
 
 // -----------------------------------------------------------------------------
 // 5. Translation Completeness for Track Mode

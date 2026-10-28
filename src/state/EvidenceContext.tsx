@@ -78,8 +78,12 @@ export const EvidenceProvider: React.FC<{ children: ReactNode }> = ({ children }
   const objectUrlsRef = useRef<Set<string>>(new Set());
 
   // Warn if user attempts to close or refresh browser window while evidence is held in memory
+  // Quick Exit MUST NEVER be blocked: if __KAVACH_SUPPRESS_BEFOREUNLOAD is set, exit immediately
   useEffect(() => {
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      if ((window as any).__KAVACH_SUPPRESS_BEFOREUNLOAD) {
+        return;
+      }
       if (items.length > 0) {
         e.preventDefault();
         e.returnValue = t.preserveUnsavedLeaveWarning;
@@ -92,6 +96,21 @@ export const EvidenceProvider: React.FC<{ children: ReactNode }> = ({ children }
       window.removeEventListener('beforeunload', handleBeforeUnload);
     };
   }, [items.length, t.preserveUnsavedLeaveWarning]);
+
+  // Listen for clear all data and quick exit events
+  useEffect(() => {
+    const handleClear = () => {
+      clearItems();
+      setIncidentCategory(null);
+    };
+
+    window.addEventListener('kavach:clear-all-data', handleClear);
+    window.addEventListener('kavach:quick-exit', handleClear);
+    return () => {
+      window.removeEventListener('kavach:clear-all-data', handleClear);
+      window.removeEventListener('kavach:quick-exit', handleClear);
+    };
+  }, []);
 
   // Cleanup object URLs on unmount
   useEffect(() => {
