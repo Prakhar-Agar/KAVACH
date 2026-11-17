@@ -115,6 +115,3 @@ Kavach provides guidance and documentation support. It is not a substitute for l
 
 
 
-## Author
-
-**Prakhar Agar** — [@Prakhar-Agar](https://github.com/Prakhar-Agar)
