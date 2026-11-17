@@ -109,9 +109,9 @@ Contributions are welcome. Please open an issue to discuss significant changes b
 Kavach provides guidance and documentation support. It is not a substitute for legal advice or emergency services. If you are in immediate danger, contact local emergency services
 
 ## Authors 
-Kuldeep Srivastava
-Prakhar agarwal
-Saumya Kasaudhan
+Kuldeep Srivastava.
+Prakhar agarwal.
+Saumya Kasaudhan.
 
 
 
